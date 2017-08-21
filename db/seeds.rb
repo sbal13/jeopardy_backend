@@ -13,6 +13,16 @@ require 'json'
 
 requests = (1..6).to_a.map { |x| JSON.parse(RestClient.get("http://jservice.io/api/category?id=#{x}"))}
 
+requests.each do |r|
+	cat = Category.create(title: r["title"])
+	r["clues"].each do |clue|
+		new_clue = Clue.create(question: clue["question"], answer: clue["answer"], value: clue["value"], category_id: cat.id)
+		cat.clues << new_clue
+	end
+
+	cat.save
+end
+
 
 
 
