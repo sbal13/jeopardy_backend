@@ -5,3 +5,14 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+require 'rest-client'
+require 'json'
+
+
+requests = (1..6).to_a.map { |x| JSON.parse(RestClient.get("http://jservice.io/api/category?id=#{x}"))}
+
+
+
+
