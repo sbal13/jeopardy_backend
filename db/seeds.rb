@@ -11,7 +11,7 @@ require 'rest-client'
 require 'json'
 
 
-requests = (1..6).to_a.map { |x| JSON.parse(RestClient.get("http://jservice.io/api/category?id=#{x}"))}
+requests = (9100..9150).to_a.map { |x| JSON.parse(RestClient.get("http://jservice.io/api/category?id=#{x}"))}
 
 requests.each do |r|
 	cat = Category.create(title: r["title"])
